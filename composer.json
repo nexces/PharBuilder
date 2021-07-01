@@ -1,5 +1,5 @@
 {
-  "name": "macfja/phar-builder",
+  "name": "nexces/phar-builder",
   "license": "MIT",
   "require": {
     "php": "^7.2 || ^7.3 || ^7.4 || ^8.0",
