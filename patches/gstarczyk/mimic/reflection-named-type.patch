@@ -1,0 +1,17 @@
+Index: src/Mock/MethodReturnTypeFactory.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mock/MethodReturnTypeFactory.php b/src/Mock/MethodReturnTypeFactory.php
+--- a/src/Mock/MethodReturnTypeFactory.php	(date 1625127308468)
++++ b/src/Mock/MethodReturnTypeFactory.php	(date 1625127308468)
+@@ -15,7 +15,7 @@
+         $reflectionType = $reflectionMethod->getReturnType();
+         $returnType = ($reflectionType->allowsNull() ? '?' : '')
+             .($this->requirePrefix($reflectionType) ? '\\' : '');
+-        $name = (string)$reflectionType;
++        $name = (string)$reflectionType->getName();
+         if ($name === 'self') {
+             $returnType .= $reflectionMethod->getDeclaringClass()->getName();
+         } else {

@@ -1,0 +1,26 @@
+Index: src/Mock/MethodArgumentFactory.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Mock/MethodArgumentFactory.php b/src/Mock/MethodArgumentFactory.php
+--- a/src/Mock/MethodArgumentFactory.php	(date 1625128144920)
++++ b/src/Mock/MethodArgumentFactory.php	(date 1625128144920)
+@@ -22,7 +22,7 @@
+      */
+     public function createArgument(ReflectionParameter $parameter): ArgumentDefinition
+     {
+-        if ($parameter->isArray()) {
++        if ($parameter->getType() && $parameter->getType()->getName() === 'array') {
+             $argument = new ArrayArgumentDefinition($parameter->getName());
+         } elseif ($className = $this->getClassName($parameter)) {
+             $argument = new ObjectArgumentDefinition($parameter->getName(), $className);
+@@ -67,7 +67,7 @@
+     private function getClassName(ReflectionParameter $parameter): ?string
+     {
+         try {
+-            $class = $parameter->getClass();
++            $class = $parameter->getType() && !$parameter->getType()->isBuiltin() ? new \ReflectionClass($parameter->getType()->getName()) : null;
+             $className = $class ? $class->getName() : null;
+         } catch (ReflectionException $exception) {
+             $text = $parameter->__toString();
